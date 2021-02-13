@@ -1,6 +1,6 @@
 'use strict';
 
-var properties = require('../package.json')
+var properties = require('../package.json');
 var seqgenerator = require('../service/seqGenerator');
 
 var controllers = {
@@ -12,12 +12,19 @@ var controllers = {
         res.json(aboutInfo);
     },
     get_sequenceRandom: function(req, res) {
-            seqgenerator.generateRandom(req, res, function(err, seq) {
-                if (err)
-                    res.send(err);
-                res.json(seq);
-            });
-        },
+        seqgenerator.generateRandom(req, res, function(err, seq) {
+            if (err)
+                res.send(err);
+            res.json(seq);
+        });
+    },
+    get_sequenceML: function(req, res) {
+        seqgenerator.generateML(req, res, function(err, seq) {
+            if (err)
+                res.send(err);
+            res.json(seq);
+        });
+    },
 };
 
 module.exports = controllers;

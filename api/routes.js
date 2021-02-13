@@ -11,4 +11,6 @@ module.exports = function(app) {
         //format: midi value or musical notation
     app.route('/sequenceRandom/:length/:scale/:grid/:format')
         .get(controller.get_sequenceRandom);
+    app.route('/sequenceML/:length/:scale/:grid/:format')
+        .get(controller.get_sequenceML);
 };
