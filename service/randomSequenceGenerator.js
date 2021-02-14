@@ -2,6 +2,7 @@
 //import { Note, Scale } from "@tonaljs/tonal";
 var tonal = require("@tonaljs/tonal");
 var seqParams = require("./seqParams.js");
+var fs = require("fs");
 
 
 var randomSequenceGenerator = {
@@ -9,14 +10,20 @@ var randomSequenceGenerator = {
     generateRandomSequence: function(params) {
         //TODO implement here generation code
         var time=0;
+        var result=[];
+        this.seq=[];
         console.log(`Seq length: ${params.len}`);
         while(time < params.len)
         {
             var duration=getRandomDuration(params.grid);
             var pitch=getRandomPitch(params.scale);
             console.log(`Pitch: ${pitch}, Duration: ${duration}, StartTime: ${time}, EndTime: ${time+duration} `);
+            this.seq.push(["note",pitch,time,duration])
             time+=duration;
         }
+        //fs.writeFile("result.txt", JSON.stringify(this.seq), err => {
+        //    if (err) return console.log(err);
+        //});
         return this.seq;
     }
 };
